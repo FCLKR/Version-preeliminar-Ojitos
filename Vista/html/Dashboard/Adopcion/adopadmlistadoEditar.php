@@ -195,10 +195,6 @@
                         </div>
                       </div>
                     </div>
-                    <?php 
-                    date_default_timezone_set("America/Bogota");
-                    $fecha_Actual= date("Y-m-d");
-                    ?>
                     
                     <form action="adopadmlistadoEditarII.php" method="post">
                     <div class="row">
@@ -217,33 +213,27 @@
                                   
                                   ?>  
                                 
-                                    <tr>                                        
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                          <label for="">Fecha de rescate</label>
-                          <input type="datatime" name="fechaEncuentro" value="<?=$fecha_Actual ?>"class="form-control">
+                                    <tr>
+                                    <td><label for="">Fecha de rescate</label>
+                                    <input type="datatime" name="fechaEncuentro" id="fechaEncuentro" class="form-control" value="<?php echo $row['fechaEncuentro']; ?>"></td>
+                                    <td><label for="nombreAnimaladopocion">Nombre</label>
+                                    <input type="text" name="nombreAnimaladopocion" id="nombreAnimaladopocion" class="form-control" value="<?php echo $row['nombreAnimaladopocion']; ?>"></td>
+                                    <div class="form-group">
+                                    <label for="especie_Animal">Especie</label>
+                                    <select name="especie_Animal" id="especie_Animal" class="form-control" value="<?php echo $row['especie_Animal']; ?>">
+                                    <option selected>Elija una especie</option>
+                                    <option>Perro</option>
+                                    <option>Gato</option>
+                                    </select>
                         </div>
-                        <div class="form-group">
-                          <label for="">Nombre</label>
-                          <input type="text" name="nombreAnimaladopocion" class="form-control" placeholder="Nombre..." >
-                        </div>
-                        <div class="form-group">
-                            <label for="Especie Animal">Especie</label>
-                            <select name="especie_Animal" class="form-control">
-                                <option selected>Elija una especie</option>
-                                <option>Perro</option>
-                                <option>Gato</option>
+                              <td><label for="descripcion">Raza</label>
+                              <input type="text" name="raza" id="raza" class="form-control" value="<?php echo $row['raza']; ?>"></td>
+                       
+                          <td><label for="descripcion">Observaciones</label>
+                          <input type="text" name="observacionesAnimal" id="observacionesAnimal" class="form-control" value="<?php echo $row['observacionesAnimal']; ?>"></td>
 
-                            </select>
-                        </div>
-                        <div class="form-group">
-                              <label for="descripcion">Raza</label>
-                              <input type="int" name="raza" class="form-control" placeholder="Especifique la raza">
-                        </div>
-                        <div class="form-group">
-                          <label for="descripcion">Observaciones</label>
-                          <input type="text" name="observacionesAnimal" class="form-control" placeholder="Datos Adicionales">
-                        </div>
+                        <input type="hidden" name="id" id="idAnimaldisponible" value="<?php echo $_REQUEST['id']; ?>"></td>
+
                                         <td><label></label>
                                             <a href="#">
                                                 <button class="btn btn-info" onclick= "return Confirmacioneditar()" name="Guardar" >Guardar</button></a>
