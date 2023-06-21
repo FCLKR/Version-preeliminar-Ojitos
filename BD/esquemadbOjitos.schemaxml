@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8mb4" collation="utf8mb4_general_ci">ojitos_db1</database>
+</source>
+<canvas zoom="80">
+<tables>
+<table name="adopcion" view="colnames">
+<left>14</left>
+<top>446</top>
+<width>128</width>
+<height>117</height>
+<sql_create_table>CREATE TABLE `adopcion` (
+  `idAnimaladopcion` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaAdopcion` date NOT NULL,
+  `Animal_Adopcioncol` int(11) NOT NULL,
+  `cliente_idCliente` int(11) NOT NULL,
+  PRIMARY KEY (`idAnimaladopcion`),
+  KEY `fk_Adopcion_cliente1_idx` (`cliente_idCliente`),
+  KEY `Animal_Adopcioncol` (`Animal_Adopcioncol`),
+  CONSTRAINT `adopcion_ibfk_1` FOREIGN KEY (`Animal_Adopcioncol`) REFERENCES `animales_en_adopcion` (`idAnimaldisponible`),
+  CONSTRAINT `fk_Adopcion_cliente1` FOREIGN KEY (`cliente_idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="animales_en_adopcion" view="colnames">
+<left>190</left>
+<top>582</top>
+<width>150</width>
+<height>144</height>
+<sql_create_table>CREATE TABLE `animales_en_adopcion` (
+  `idAnimaldisponible` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaEncuentro` date NOT NULL,
+  `nombreAnimaladopocion` varchar(50) DEFAULT NULL,
+  `especie_Animal` enum('Perro','Gato') NOT NULL,
+  `raza` varchar(30) DEFAULT NULL,
+  `observacionesAnimal` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idAnimaldisponible`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="cliente" view="colnames">
+<left>169</left>
+<top>298</top>
+<width>119</width>
+<height>171</height>
+<sql_create_table>CREATE TABLE `cliente` (
+  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
+  `prinombreCliente` varchar(45) NOT NULL,
+  `segnombreCliente` varchar(45) NOT NULL,
+  `priapellidoCliente` varchar(45) NOT NULL,
+  `segapellidoCliente` varchar(45) NOT NULL,
+  `documentoCliente` varchar(45) NOT NULL,
+  `edadCliente` int(50) DEFAULT NULL,
+  `mailCliente` varchar(100) NOT NULL,
+  `addressCliente` varchar(100) NOT NULL,
+  `numeroCelular` varchar(20) DEFAULT NULL,
+  `passwordCliente` varchar(120) NOT NULL,
+  `estado` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo',
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="factura" view="colnames">
+<left>314</left>
+<top>7</top>
+<width>128</width>
+<height>171</height>
+<sql_create_table>CREATE TABLE `factura` (
+  `idfactura` int(11) NOT NULL AUTO_INCREMENT,
+  `fechaFactura` date NOT NULL,
+  `valorFactura` decimal(10,0) NOT NULL,
+  `iva` decimal(10,0) NOT NULL,
+  `totalFactura` decimal(10,0) NOT NULL,
+  `cliente_idCliente` int(11) NOT NULL,
+  `descripcion_compra` varchar(100) NOT NULL,
+  PRIMARY KEY (`idfactura`),
+  KEY `fk_Factura_cliente1_idx` (`cliente_idCliente`),
+  CONSTRAINT `fk_Factura_cliente1` FOREIGN KEY (`cliente_idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="factura_has_producto" view="colnames">
+<left>681</left>
+<top>0</top>
+<width>150</width>
+<height>158</height>
+<sql_create_table>CREATE TABLE `factura_has_producto` (
+  `Factura_has_productocol` int(11) NOT NULL AUTO_INCREMENT,
+  `cantidad` int(11) NOT NULL,
+  `valorProducto` decimal(10,0) NOT NULL,
+  `valorIva` decimal(10,0) NOT NULL,
+  `subTotal` decimal(10,0) NOT NULL,
+  `Factura_idfactura` int(11) NOT NULL,
+  `producto_idProducto` int(11) NOT NULL,
+  PRIMARY KEY (`Factura_has_productocol`),
+  KEY `fk_Factura_has_producto_Factura1_idx` (`Factura_idfactura`),
+  KEY `fk_Factura_has_producto_producto1_idx` (`producto_idProducto`),
+  CONSTRAINT `factura_has_producto_ibfk_1` FOREIGN KEY (`Factura_idfactura`) REFERENCES `factura` (`idfactura`),
+  CONSTRAINT `factura_has_producto_ibfk_2` FOREIGN KEY (`producto_idProducto`) REFERENCES `producto` (`idProducto`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="factura_has_servicio" view="colnames">
+<left>461</left>
+<top>116</top>
+<width>122</width>
+<height>171</height>
+<sql_create_table>CREATE TABLE `factura_has_servicio` (
+  `idFacturaServicio` int(11) NOT NULL AUTO_INCREMENT,
+  `Factura_idfactura` int(11) NOT NULL,
+  `servicio_idServicio` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `valorServicio` decimal(10,0) NOT NULL,
+  `subTotal` decimal(10,0) NOT NULL,
+  `impIVA` int(11) NOT NULL,
+  `total` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`idFacturaServicio`),
+  KEY `fk_Factura_has_servicio_servicio1_idx` (`servicio_idServicio`),
+  KEY `fk_Factura_has_servicio_Factura1_idx` (`Factura_idfactura`),
+  CONSTRAINT `factura_has_servicio_ibfk_1` FOREIGN KEY (`Factura_idfactura`) REFERENCES `factura` (`idfactura`),
+  CONSTRAINT `fk_Factura_has_servicio_servicio1` FOREIGN KEY (`servicio_idServicio`) REFERENCES `servicio` (`idServicio`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="mascota" view="colnames">
+<left>720</left>
+<top>214</top>
+<width>115</width>
+<height>144</height>
+<sql_create_table>CREATE TABLE `mascota` (
+  `idMascota` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreMascota` varchar(100) NOT NULL,
+  `sexoMascota` enum('Macho','Hembra') NOT NULL,
+  `edadMascota` int(11) NOT NULL,
+  `cliente_idCliente` int(11) NOT NULL,
+  `Historia_idClinica` int(11) NOT NULL,
+  PRIMARY KEY (`idMascota`),
+  UNIQUE KEY `Historiaclinicaid` (`Historia_idClinica`),
+  KEY `clienteId` (`cliente_idCliente`),
+  CONSTRAINT `Historiaclinicaid` FOREIGN KEY (`Historia_idClinica`) REFERENCES `historiaclinica` (`idHistoriaClin`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `clienteId` FOREIGN KEY (`cliente_idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="producto" view="colnames">
+<left>944</left>
+<top>30</top>
+<width>128</width>
+<height>130</height>
+<sql_create_table>CREATE TABLE `producto` (
+  `idProducto` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreProducto` varchar(50) NOT NULL,
+  `valorProducto` varchar(15) NOT NULL,
+  `stockProducto` int(100) NOT NULL,
+  `descripcionProducto` text NOT NULL,
+  PRIMARY KEY (`idProducto`)
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="roles" view="colnames">
+<left>197</left>
+<top>125</top>
+<width>71</width>
+<height>90</height>
+<sql_create_table>CREATE TABLE `roles` (
+  `idRol` int(11) NOT NULL AUTO_INCREMENT,
+  `nomRol` varchar(20) NOT NULL,
+  `cargo` varchar(20) NOT NULL,
+  PRIMARY KEY (`idRol`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="servicio" view="colnames">
+<left>584</left>
+<top>302</top>
+<width>109</width>
+<height>130</height>
+<sql_create_table>CREATE TABLE `servicio` (
+  `idServicio` int(11) NOT NULL AUTO_INCREMENT,
+  `tipoServicio` enum('Domicilio','Jardin') NOT NULL,
+  `nombreServicio` varchar(100) NOT NULL,
+  `precioServicio` decimal(10,0) NOT NULL,
+  `descripcion` varchar(250) NOT NULL,
+  PRIMARY KEY (`idServicio`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="usuarios" view="colnames">
+<left>18</left>
+<top>5</top>
+<width>122</width>
+<height>185</height>
+<sql_create_table>CREATE TABLE `usuarios` (
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `documentoUsuario` varchar(15) DEFAULT NULL,
+  `nombresUsuarios` varchar(50) NOT NULL,
+  `apellidosUsuarios` varchar(50) NOT NULL,
+  `telefonosUsuarios` varchar(15) NOT NULL,
+  `emailUsuarios` varchar(100) NOT NULL,
+  `passwordUsers` varchar(16) NOT NULL,
+  `Estado` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo',
+  `Roles_idRol` int(11) NOT NULL,
+  PRIMARY KEY (`idUsuario`),
+  KEY `fk_Usuarios_Roles1_idx` (`Roles_idRol`),
+  CONSTRAINT `fk_Usuarios_Roles1` FOREIGN KEY (`Roles_idRol`) REFERENCES `roles` (`idRol`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="HistoriaClinica" view="colnames">
+<left>872</left>
+<top>187</top>
+<width>102</width>
+<height>117</height>
+<sql_create_table>CREATE TABLE `historiaclinica` (
+  `idHistoriaClin` int(11) NOT NULL AUTO_INCREMENT,
+  `diagnosticoEnf` varchar(200) NOT NULL,
+  `nivelUrgen` enum('1','2','3','4','5') NOT NULL,
+  `fechaDiagn` date NOT NULL,
+  PRIMARY KEY (`idHistoriaClin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+<table name="Registros" view="colnames">
+<left>997</left>
+<top>326</top>
+<width>99</width>
+<height>103</height>
+<sql_create_table>CREATE TABLE `registros` (
+  `idRegistro` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(500) NOT NULL,
+  `fechaRegistro` date NOT NULL,
+  `idHistoria_idRegistroHC` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idRegistro`),
+  KEY `idHistoria_idRegistroHC` (`idHistoria_idRegistroHC`),
+  CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`idHistoria_idRegistroHC`) REFERENCES `historiaclinica` (`idHistoriaClin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
