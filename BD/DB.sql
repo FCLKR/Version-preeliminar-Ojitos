@@ -46,11 +46,11 @@ CREATE TABLE `animales_en_adopcion` (
   `raza` varchar(30) DEFAULT NULL,
   `observacionesAnimal` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idAnimaldisponible`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `animales_en_adopcion` */
 
-insert  into `animales_en_adopcion`(`idAnimaldisponible`,`fechaEncuentro`,`nombreAnimaladopocion`,`especie_Animal`,`raza`,`observacionesAnimal`) values (7,'2023-06-18','ninguno','','angoro','Encontrado en la calle'),(12,'2023-06-17','ninguno','','Otra','sdfdsaf'),(13,'2023-06-17','nuevo','Perro','angora','sdfdsaf'),(16,'2023-01-22','fercho','','nexcam','Gato encontrado en un apto'),(18,'2023-06-22','nuevo','Perro','Criollo','sdfsadf'),(21,'2023-06-22','ninguno','Perro','Criollo','sdfsadf'),(22,'2023-02-22','Leon','Perro','cihgugua','sin una pata');
+insert  into `animales_en_adopcion`(`idAnimaldisponible`,`fechaEncuentro`,`nombreAnimaladopocion`,`especie_Animal`,`raza`,`observacionesAnimal`) values (7,'2023-06-18','ningun','Perro','angoro','Encontrado en la calle'),(12,'2023-06-17','ninguno','','Otra','sdfdsaf'),(13,'2023-06-17','nuevo','Perro','angora','sdfdsaf'),(16,'2023-01-22','fercho','','nexcam','Gato encontrado en un apto'),(18,'2023-06-22','nuevo','Perro','Criollo','sdfsadf'),(21,'2023-06-22','ninguno','Perro','Criollo','sdfsadf'),(22,'2023-02-22','Leon','Perro','cihgugua','sin una pata'),(23,'0000-00-00','otro','','angora','Encontrado en la calle'),(24,'2023-06-23','otro','Gato','Criollo','Gato encontrado en un apto');
 
 /*Table structure for table `cliente` */
 
@@ -74,7 +74,7 @@ CREATE TABLE `cliente` (
 
 /*Data for the table `cliente` */
 
-insert  into `cliente`(`idCliente`,`prinombreCliente`,`segnombreCliente`,`priapellidoCliente`,`segapellidoCliente`,`documentoCliente`,`edadCliente`,`mailCliente`,`addressCliente`,`numeroCelular`,`passwordCliente`,`estado`) values (9,'sdfsdf','jhhjb','yuhfu','ufuv','821398721',22,'hibihvh@hotmail.com','','123234213 ','12345','Activo'),(10,'sdfsdf','jhhjb','yuhfu','ufuv','821398721',22,'hibihvh@hotmail.com','',' ','hola','Activo'),(11,'andres','lopez','lopez','lopez','232134',23,'hibihvh@hotmail.com','','1324214323 ','1234','Activo'),(12,'sadfdsa','fdsadf','asdfasf','sadfasdf','2341234',23,'asfdasdf','','2341234 ','12312','Activo'),(13,'sadasd','jhhjb','lopez','lopez','21342134',23,'hibihvh@hotmail.com','','1324214323 ','12345','Activo'),(14,'jose','raul','beltran','sanchez','123213',26,'asdkfjaskfd@hotmail.cpom','sdfafds','1324214323','1234567','Inactivo'),(15,'sdfsdf','lopez','lopez','ufuv','23421341',23,'hibihvh@hotmail.com','sdfafds','1324214323','1234','Activo'),(16,'sdfsdf','lopez','lopez','ufuv','23421341',23,'hibihvh@hotmail.com','sdfafds','1324214323','1234','Activo'),(17,'sdfsdf','lopez','lopez','lopez','21342134',34,'hibihvh@hotmail.com','sdfafds','1324214323','1234','Inactivo'),(19,'sdfsdf','lopez','lopez','lopez','12323334556',45,'hibihvh@hotmail.com','sdfafds','1234243','12345','Inactivo'),(21,'sdfsdf','lopez','lopez','ufuv','76543',67,'hibihvh@hotmail.com','2342234','3454325','123','Activo'),(22,'andres','lopez','lopez','ufuv','987263432',23,'hibihvh@hotmail.com','3452345','3432432','123','Activo');
+insert  into `cliente`(`idCliente`,`prinombreCliente`,`segnombreCliente`,`priapellidoCliente`,`segapellidoCliente`,`documentoCliente`,`edadCliente`,`mailCliente`,`addressCliente`,`numeroCelular`,`passwordCliente`,`estado`) values (9,'sdfsdf','jhhjb','yuhfu','ufuv','821398721',22,'hibihvh@hotmail.com','','123234213 ','12345','Inactivo'),(10,'sdfsdf','jhhjb','yuhfu','ufuv','821398721',22,'hibihvh@hotmail.com','',' ','hola','Activo'),(11,'andres','lopez','lopez','lopez','232134',23,'hibihvh@hotmail.com','','1324214323 ','1234','Inactivo'),(12,'sadfdsa','fdsadf','asdfasf','sadfasdf','2341234',23,'asfdasdf','','2341234 ','12312','Activo'),(13,'sadasd','jhhjb','lopez','lopez','21342134',23,'hibihvh@hotmail.com','','1324214323 ','12345','Activo'),(14,'jose','raul','beltran','sanchez','123213',26,'asdkfjaskfd@hotmail.cpom','sdfafds','1324214323','1234567','Activo'),(15,'sdfsdf','lopez','lopez','ufuv','23421341',23,'hibihvh@hotmail.com','sdfafds','1324214323','1234','Activo'),(16,'sdfsdf','lopez','lopez','ufuv','23421341',23,'hibihvh@hotmail.com','sdfafds','1324214323','1234','Activo'),(17,'sdfsdf','lopez','lopez','lopez','21342134',34,'hibihvh@hotmail.com','sdfafds','1324214323','1234','Inactivo'),(19,'sdfsdf','lopez','lopez','lopez','12323334556',45,'hibihvh@hotmail.com','sdfafds','1234243','12345','Inactivo'),(21,'sdfsdf','lopez','lopez','ufuv','76543',67,'hibihvh@hotmail.com','2342234','3454325','123','Activo'),(22,'andres','lopez','lopez','ufuv','987263432',23,'hibihvh@hotmail.com','3452345','3432432','123','Activo');
 
 /*Table structure for table `factura` */
 
@@ -193,7 +193,7 @@ CREATE TABLE `producto` (
 
 /*Data for the table `producto` */
 
-insert  into `producto`(`idProducto`,`nombreProducto`,`valorProducto`,`stockProducto`,`descripcionProducto`) values (86,'cama',60000,20,'Cama par gato'),(88,'cama',40000,30,'Cama para perro'),(104,'collar',2500,8,'Collar para gato'),(106,'Collar',8000,78,'Collar para gato');
+insert  into `producto`(`idProducto`,`nombreProducto`,`valorProducto`,`stockProducto`,`descripcionProducto`) values (86,'cama',60000,20,'Cama par gato'),(104,'collar',2500,8,'Collar para gato');
 
 /*Table structure for table `registros` */
 
@@ -263,6 +263,19 @@ CREATE TABLE `usuarios` (
 /*Data for the table `usuarios` */
 
 insert  into `usuarios`(`idUsuario`,`documentoUsuario`,`nombresUsuarios`,`apellidosUsuarios`,`telefonosUsuarios`,`emailUsuarios`,`passwordUsers`,`Estado`,`Roles_idRol`) values (7,'1013671072','Jefferson','Arenas Zea','3204167449','facehuker@outlook.es','123456789','Inactivo',5),(8,'1313465642','Jose','Beltran Sanchez','3167517103','josebeltran@hotmail.com','987654321','Activo',9);
+
+/* Procedure structure for procedure `BuscarListaProductoCliente` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `BuscarListaProductoCliente` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `BuscarListaProductoCliente`(IN BLPC VARCHAR(100))
+BEGIN
+  SELECT nombreProducto,valorProducto,stockProducto,descripcionProducto
+  FROM producto WHERE nombreProducto LIKE BLPC;
+END */$$
+DELIMITER ;
 
 /* Procedure structure for procedure `BuscarProductoStockAdmin` */
 
@@ -383,6 +396,19 @@ DELIMITER $$
 BEGIN
   INSERT INTO producto (nombreProducto, valorProducto, stockProducto, descripcionProducto)
 VALUES ( nP , vP, sP, dP);
+END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `ListaProductoCliente` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `ListaProductoCliente` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `ListaProductoCliente`()
+BEGIN
+  SELECT nombreProducto,valorProducto,descripcionProducto
+  FROM producto;
 END */$$
 DELIMITER ;
 
