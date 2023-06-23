@@ -17,10 +17,9 @@ $conexion = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conexion){
     die("connection failed:" .mysqli_connect_error());
 }
-
-$sql = "INSERT INTO animales_en_adopcion (idAnimaldisponible, fechaEncuentro, nombreAnimaladopocion, especie_Animal, raza,observacionesAnimal)
-VALUES ('$idAnimaldisponible', '$fechaAdop', '$nombreAAdop', '$especieAAdop','$raza','$observacionesAn')
-";
+$sql ="CALL InsertarNuevoAnimal ('$fechaAdop','$nombreAAdop','$especieAAdop','$raza','$observacionesAn')";
+/*$sql = "INSERT INTO animales_en_adopcion (idAnimaldisponible, fechaEncuentro, nombreAnimaladopocion, especie_Animal, raza,observacionesAnimal)
+VALUES ('$idAnimaldisponible', '$fechaAdop', '$nombreAAdop', '$especieAAdop','$raza','$observacionesAn')";*/
    
 if ($especieAAdop =="Elija una especie") {
     echo "Asegurate de haber elegido una especie";

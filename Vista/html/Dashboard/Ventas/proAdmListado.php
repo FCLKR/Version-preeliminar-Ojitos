@@ -218,15 +218,14 @@
                             <thead>
                               <th>Codigo Factura</th>
                               <th>Fecha Factura</th>
-                              <th>Nombre Cliente</th>
-                              <th>Apellido Cliente</th>
+                              <th>Documento Cliente</th>
                               <th>Producto</th>
                               <th>Precio producto</th>
-                              <th>Cantidad unidades</th>
+                              <th>Unidades</th>
                               <th>iva aplicado</th>
                               <th>subTotal</th>
                               <th>Total Factura</th>
-                              <th>Cantidad restantes Stock</th>
+                              <th>Disp Stock</th>
                             </thead>
                                
                     <?php
@@ -235,18 +234,13 @@
                                 if (isset($_POST["enviar"])) {
                                   
                                   $buscar = $_POST["textbox"];
-                                  $Result = "SELECT factura.idfactura,factura.fechaFactura, cliente.priapellidoCliente, cliente.prinombreCliente, producto.nombreProducto, producto.valorProducto,factura_has_producto.cantidad, factura_has_producto.valorIva, factura_has_producto.subTotal, factura.totalFactura,producto.stockProducto
-                                        FROM producto
-                                        INNER JOIN factura_has_producto ON producto.idProducto = factura_has_producto.producto_idProducto
-                                        INNER JOIN factura ON factura_has_producto.Factura_idfactura = factura.idfactura
-                                        INNER JOIN cliente ON factura.cliente_idCliente = cliente.idCliente WHERE nombreProducto LIKE '%$buscar%'";
+                                  $Result = "CALL VentasProListaAdmFiltro ('%$buscar%')";
                                   //$Result= $conexion->query("SELECT * FROM producto WHERE nombreProducto LIKE '%$buscar%'");
                                   $buscarResult= mysqli_query($conexion, $Result);
                                     while ($row = $buscarResult->fetch_array()) {
                                             $idfactura = $row["idfactura"];
                                             $fechaFactura = $row["fechaFactura"];
-                                            $primerApellido = $row["prinombreCliente"];
-                                            $primerNombre = $row["priapellidoCliente"];
+                                            $documentCliente = $row["documentoCliente"];
                                             $nombreProducto = $row["nombreProducto"];
                                             $valorFactProducto = $row["valorProducto"];
                                             $cantidadCompra= $row["cantidad"];
@@ -258,8 +252,7 @@
                                          <tr>
                                             <td><?php echo $idfactura  ?>  </td>
                                             <td><?php echo $fechaFactura  ?>  </td>
-                                            <td><?php echo $primerApellido ?></td>
-                                            <td><?php echo $primerNombre ?></td>
+                                            <td><?php echo $documentCliente ?></td>
                                             <td><?php echo $nombreProducto ?></td>
                                             <td><?php echo $valorFactProducto ?></td>
                                             <td><?php echo $cantidadCompra ?></td>
@@ -272,18 +265,13 @@
                                         <?php
                                     }
                                 } else {
-                                    $traer = "SELECT factura.idfactura,factura.fechaFactura, cliente.priapellidoCliente, cliente.prinombreCliente, producto.nombreProducto, producto.valorProducto,factura_has_producto.cantidad, factura_has_producto.valorIva, factura_has_producto.subTotal, factura.totalFactura,producto.stockProducto
-                                        FROM producto
-                                        INNER JOIN factura_has_producto ON producto.idProducto = factura_has_producto.producto_idProducto
-                                        INNER JOIN factura ON factura_has_producto.Factura_idfactura = factura.idfactura
-                                        INNER JOIN cliente ON factura.cliente_idCliente = cliente.idCliente";
+                                    $traer = "CALL VentasProListaAdm";
                                     $resultado = mysqli_query($conexion, $traer);
                                     if ($resultado) {
                                         while ($row = $resultado->fetch_array()) {
                                             $idfactura = $row["idfactura"];
                                             $fechaFactura = $row["fechaFactura"];
-                                            $primerApellido = $row["prinombreCliente"];
-                                            $primerNombre = $row["priapellidoCliente"];
+                                            $documentCliente = $row["documentoCliente"];
                                             $nombreProducto = $row["nombreProducto"];
                                             $valorFactProducto = $row["valorProducto"];
                                             $cantidadCompra= $row["cantidad"];
@@ -295,8 +283,7 @@
                                             <tr>
                                             <td><?php echo $idfactura  ?>  </td>
                                             <td><?php echo $fechaFactura  ?>  </td>
-                                            <td><?php echo $primerApellido ?></td>
-                                            <td><?php echo $primerNombre ?></td>
+                                            <td><?php echo $documentCliente ?></td>
                                             <td><?php echo $nombreProducto ?></td>
                                             <td><?php echo $valorFactProducto ?></td>
                                             <td><?php echo $cantidadCompra ?></td>

@@ -3,7 +3,9 @@
 require_once ('Conexion.php');
 
 if(isset($_REQUEST['id'])){
-	$query = "DELETE FROM animales_en_adopcion WHERE idAnimaldisponible=".$_REQUEST['id'];
+        $EAA = $_REQUEST['id'];
+        $query="CALL EliminarAnimalAdopcion ($EAA)";
+	//$query = "DELETE FROM animales_en_adopcion WHERE idAnimaldisponible=".$_REQUEST['id'];
 
 	$resultado=mysqli_query($conexion,$query);
 	

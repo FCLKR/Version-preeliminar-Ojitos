@@ -53,11 +53,6 @@
         <li>
             <a href=".\vista\html\Homepage\Adopcion.html" font face="display">Adopcion</a>
         </li>
-        <li></li>
-        <li></li>
-        <li>
-        <a href=".\vista\html\Homepage\Presentacion.html" font face="display">Presentación</a>
-
 
         </ul>
 

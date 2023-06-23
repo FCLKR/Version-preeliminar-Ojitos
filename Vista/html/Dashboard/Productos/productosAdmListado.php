@@ -224,7 +224,7 @@
                                 if (isset($_POST["enviar"])) {
                                   
                                   $buscar = $_POST["textbox"];
-                                  $Result = "SELECT * FROM producto WHERE nombreProducto LIKE '%$buscar%'";
+                                  $Result = "CALL BuscarProductoStockAdmin ('%$buscar%')";
                                   //$Result= $conexion->query("SELECT * FROM producto WHERE nombreProducto LIKE '%$buscar%'");
                                   $buscarResult= mysqli_query($conexion, $Result);
                                     while ($row = $buscarResult->fetch_array()) {

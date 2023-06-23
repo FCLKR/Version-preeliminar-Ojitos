@@ -206,7 +206,9 @@
                                   <?php 
                                   
                                    $inc = include("Conexion.php");
-                                   $query = "SELECT * FROM animales_en_adopcion WHERE idAnimaldisponible =".$_REQUEST['id'];
+                                   $EIDAA = $_REQUEST['id'];
+                                   $query = "CALL EditarporIDAAdopcion  ($EIDAA)";
+                                   //$query = "SELECT * FROM animales_en_adopcion WHERE idAnimaldisponible =".$_REQUEST['id'];
                                    $give= mysqli_query($conexion, $query);
                                    
                                    while ($row = mysqli_fetch_array($give)){

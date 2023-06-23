@@ -213,8 +213,7 @@
                             <thead>
                               <th>Codigo Factura</th>
                               <th>Fecha Factura</th>
-                              <th>Nombre Cliente</th>
-                              <th>Apellido Cliente</th>
+                              <th>Documento Cliente</th>
                               <th>Servicio</th>
                               <th>Tipo</th>
                               <th>Valor</th>
@@ -229,18 +228,13 @@
                                 if (isset($_POST["enviar"])) {
                                   
                                   $buscar = $_POST["textbox"];
-                                  $Result = "SELECT factura.idfactura,factura.fechaFactura, cliente.priapellidoCliente, cliente.prinombreCliente,servicio.nombreServicio,servicio.tipoServicio, factura_has_servicio.valorServicio, factura_has_servicio.subTotal, factura.totalFactura,factura.descripcion_compra
-                                            FROM servicio
-                                            INNER JOIN factura_has_servicio ON servicio.idServicio = factura_has_servicio.servicio_idServicio
-                                            INNER JOIN factura ON factura_has_servicio.Factura_idfactura = factura.idfactura
-                                            INNER JOIN cliente ON factura.cliente_idCliente = cliente.idCliente WHERE nombreServicio LIKE '%$buscar%'";
+                                  $Result = "CALL VentasSerListaAdmFiltro ('%$buscar%')";
                                   //$Result= $conexion->query("SELECT * FROM producto WHERE nombreProducto LIKE '%$buscar%'");
                                   $buscarResult= mysqli_query($conexion, $Result);
                                     while ($row = $buscarResult->fetch_array()) {
                                             $idfactura = $row["idfactura"];
                                             $fechaFactura = $row["fechaFactura"];
-                                            $primerApellido = $row["priapellidoCliente"];
-                                            $primerNombre = $row["prinombreCliente"];
+                                            $documentoCliente = $row["documentoCliente"];
                                             $nombreProducto = $row["nombreServicio"];
                                             $tipoServicio= $row["tipoServicio"];
                                             $valorServicio= $row["valorServicio"];
@@ -251,8 +245,7 @@
                                          <tr>
                                             <td><?php echo $idfactura  ?>  </td>
                                             <td><?php echo $fechaFactura  ?>  </td>
-                                            <td><?php echo $primerApellido ?></td>
-                                            <td><?php echo $primerNombre ?></td>
+                                            <td><?php echo $documentoCliente ?></td>
                                             <td><?php echo $nombreProducto ?></td>
                                             <td><?php echo $tipoServicio ?></td>
                                             <td><?php echo $valorServicio ?></td>
@@ -264,18 +257,13 @@
                                         <?php
                                     }
                                 } else {
-                                    $traer = "SELECT factura.idfactura,factura.fechaFactura, cliente.priapellidoCliente, cliente.prinombreCliente,servicio.nombreServicio,servicio.tipoServicio, factura_has_servicio.valorServicio, factura_has_servicio.subTotal, factura.totalFactura,factura.descripcion_compra
-                                            FROM servicio
-                                            INNER JOIN factura_has_servicio ON servicio.idServicio = factura_has_servicio.servicio_idServicio
-                                            INNER JOIN factura ON factura_has_servicio.Factura_idfactura = factura.idfactura
-                                            INNER JOIN cliente ON factura.cliente_idCliente = cliente.idCliente";
+                                    $traer = "CALL VentasSerListaAdmFiltro ";
                                     $resultado = mysqli_query($conexion, $traer);
                                     if ($resultado) {
                                         while ($row = $resultado->fetch_array()) {
                                             $idfactura = $row["idfactura"];
                                             $fechaFactura = $row["fechaFactura"];
-                                            $primerApellido = $row["priapellidoCliente"];
-                                            $primerNombre = $row["prinombreCliente"];
+                                            $documentoCliente = $row["documentoCliente"];
                                             $nombreProducto = $row["nombreServicio"];
                                             $tipoServicio= $row["tipoServicio"];
                                             $valorServicio= $row["valorServicio"];
@@ -286,8 +274,7 @@
                                             <tr>
                                             <td><?php echo $idfactura  ?>  </td>
                                             <td><?php echo $fechaFactura  ?>  </td>
-                                            <td><?php echo $primerApellido ?></td>
-                                            <td><?php echo $primerNombre ?></td>
+                                            <td><?php echo $documentoCliente ?></td>
                                             <td><?php echo $nombreProducto ?></td>
                                             <td><?php echo $tipoServicio ?></td>
                                             <td><?php echo $valorServicio ?></td>

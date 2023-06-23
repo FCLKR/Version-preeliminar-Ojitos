@@ -16,9 +16,7 @@ if (!$conexion){
     die("connection failed:" .mysqli_connect_error());
 }
 
-$sql = "INSERT INTO producto (nombreProducto, valorProducto, stockProducto, descripcionProducto)
-VALUES ('$nombreProducto', '$valorProducto', '$stockProducto','$descripcionProducto')
-";
+$sql = "CALL InsertarNuevoProductoStock ('$nombreProducto', $valorProducto, $stockProducto,'$descripcionProducto')";
    if (mysqli_query($conexion, $sql)) {
        header ('location: productosAdmListado.php');
    }else{

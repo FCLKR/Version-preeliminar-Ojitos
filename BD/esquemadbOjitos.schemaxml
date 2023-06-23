@@ -6,8 +6,8 @@
 <canvas zoom="80">
 <tables>
 <table name="adopcion" view="colnames">
-<left>14</left>
-<top>446</top>
+<left>13</left>
+<top>280</top>
 <width>128</width>
 <height>117</height>
 <sql_create_table>CREATE TABLE `adopcion` (
@@ -35,7 +35,7 @@
   `raza` varchar(30) DEFAULT NULL,
   `observacionesAnimal` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idAnimaldisponible`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
 </table>
 <table name="cliente" view="colnames">
 <left>169</left>
@@ -127,14 +127,14 @@
   `nombreMascota` varchar(100) NOT NULL,
   `sexoMascota` enum('Macho','Hembra') NOT NULL,
   `edadMascota` int(11) NOT NULL,
-  `cliente_idCliente` int(11) NOT NULL,
-  `Historia_idClinica` int(11) NOT NULL,
+  `cliente_idCliente` int(11) DEFAULT NULL,
+  `Historia_idClinica` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMascota`),
   UNIQUE KEY `Historiaclinicaid` (`Historia_idClinica`),
   KEY `clienteId` (`cliente_idCliente`),
   CONSTRAINT `Historiaclinicaid` FOREIGN KEY (`Historia_idClinica`) REFERENCES `historiaclinica` (`idHistoriaClin`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `clienteId` FOREIGN KEY (`cliente_idCliente`) REFERENCES `cliente` (`idCliente`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci</sql_create_table>
 </table>
 <table name="producto" view="colnames">
 <left>944</left>

@@ -190,11 +190,10 @@
                         <div class="table-responsive">
                           <table class="table table-striped table-bordered table-condensed table-hover">
                             <thead>
-                              <th>Codigo de producto</th>
-                              <th>Tipo</th>
-                              <th>Nombre</th>
-                              <th>Valor</th>
+                              <th>Producto</th>
                               <th>Descripcion</th>
+                              <th>Valor</th>
+                              <th>Cantidad</th>
                             </thead>
 
                             <tr>

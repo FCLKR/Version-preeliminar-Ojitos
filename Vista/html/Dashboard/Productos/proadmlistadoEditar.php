@@ -216,7 +216,8 @@
                                   <?php 
                                   
                                    $inc = include("Conexion.php");
-                                   $query = "SELECT * FROM producto WHERE idProducto =".$_REQUEST['id'];
+                                   $BEP = $_REQUEST['id'];
+                                   $query = "Call EditarporIDproductos ($BEP)";
                                    $give= mysqli_query($conexion, $query);
                                    
                                    while ($row = mysqli_fetch_array($give)){

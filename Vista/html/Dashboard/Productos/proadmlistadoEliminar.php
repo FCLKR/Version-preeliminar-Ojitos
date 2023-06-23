@@ -3,7 +3,8 @@
 require_once ('Conexion.php');
 
 if(isset($_REQUEST['id'])){
-	$query = "DELETE FROM producto WHERE idProducto=".$_REQUEST['id'];
+        $esp =$_REQUEST['id'];
+	$query = "CALL EliminarStockProducto($esp)";
 
 	$resultado=mysqli_query($conexion,$query);
 	
