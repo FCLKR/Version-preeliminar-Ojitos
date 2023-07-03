@@ -1,3 +1,25 @@
+<?php
+session_start();
+include("Conexion.php");
+if(isset($_POST['Submit']))
+{
+ $oldpass=($_POST['opwd']);
+ $Doc=$_SESSION['username'];
+ $newpassword=($_POST['npwd']);
+$sql=mysqli_query($conexion,"SELECT passwordCliente FROM cliente where passwordCliente='$oldpass' && documentoCliente='$Doc'");
+$num=mysqli_fetch_array($sql);
+if($num>0)
+{
+ $conexion=mysqli_query($conexion,"UPDATE cliente SET passwordCliente='$newpassword' WHERE documentoCliente='$Doc'");
+ $_SESSION['msg1']="Contraseña cambiada correctamente";
+}
+else
+{
+$_SESSION['msg1']="La contraseña actual no es correcta";
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,42 +49,70 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script type="text/javascript">
+function valid()
+{
+if(document.chngpwd.opwd.value=="")
+{
+alert("Campo de vieja contraseña vacio");
+document.chngpwd.opwd.focus();
+return false;
+}
+else if(document.chngpwd.npwd.value=="")
+{
+alert("Campo de nueva contraseña vacio");
+document.chngpwd.npwd.focus();
+return false;
+}
+else if(document.chngpwd.cpwd.value=="")
+{
+alert("Campo de confirmar contraseña vacio");
+document.chngpwd.cpwd.focus();
+return false;
+}
+else if(document.chngpwd.npwd.value!= document.chngpwd.cpwd.value)
+{
+alert("Las nueva contraseña no coincide en ambos campos");
+document.chngpwd.cpwd.focus();
+return false;
+}
+return true;
+}
+</script>
 </head>
+
 <body style="background-color: #666666;">
 	
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-43">
-						Ingresa una nueva clave
-					</span>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Ingresa tu numero de documento">
-						<input class="input100" type="pass" name="Password">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Escribe una nueva clave</span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Confirma la nueva clave</span>
-					</div>
-			
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							<a  class="login100-form-btn" href="#" style="text-decoration: none; color: aliceblue">Listo</a>
-						</button>
-					</div>
-
-					<button class="Singup100-form-btn">
-						<a  class="Singup100-form-btn" href="..\Main.html" style="text-decoration: none; color: aliceblue">Cancelar	</a>
-					</button>
-					
-				</form>
+				<form class="login100-form validate-form" action="" method="post">
+				<h1>Cambia tu contraseña</h1>
+                   <p style="color:red;"><?php echo $_SESSION['msg1'];?><?php echo $_SESSION['msg1']="";?></p>
+             <form name="chngpwd" id="chngpwd" action="" method="post" onSubmit="return valid();">
+              <table align="center">
+			  <tr height="50">
+			  <td>Contraseña actual:</td>
+			  <td><input type="password" name="opwd" id="opwd"></td>
+			  </tr>
+		  <tr height="50">
+			  <td>Nueva contraseña:</td>
+			  <td><input type="password" name="npwd" id="npwd"></td>
+			  </tr>
+		  <tr height="50">
+			  <td>Confirmar nueva contraseña:</td>
+			  <td><input type="password" name="cpwd" id="cpwd"></td>
+			  </tr>
+			  <tr>
+			  <td><a href="http://localhost/Ojitos/vista/html/dashboard/Layout/inicioCliente.php">Regresar</a></td>
+			  <td><input type="submit" name="Submit" value="Cambia tu contraseña"/></td>
+			  </tr>
+                <tr>
+              <td></td>
+              <td></td>
+              </tr>
+			  </table>
+			  </form>
 
 				<div class="login100-more" style="background-image: url('images/Logo.png');" >
 				</div>

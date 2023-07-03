@@ -12,7 +12,7 @@
 
  <?php
     include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headerall.php';//-> Cuadro de presentacion y cerrar sesion
-    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\slidermenuAdmin.php';//-> Menu lateral.
+    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\slidermenuStaff.php';//-> Menu lateral.
     ?>
       <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->

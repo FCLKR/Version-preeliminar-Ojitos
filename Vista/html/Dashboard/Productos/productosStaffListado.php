@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 
 <html>
- <?php
-    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headall.php'; //-> Fila superior
+<?php
+    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headall.php';//-> Fila superior
     ?>
-   
    <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
       <?php
-            include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headerall.php'; //-> Cuadro de presentacion y cerrar sesion
-            include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\slidermenuCliente.php'; //-> Menu para cliente
-            ?>
-
-
-
+    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headerall.php';//-> Cuadro de presentacion y cerrar sesion
+    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\slidermenuStaff.php';//-> Menu lateral.
+    ?>
       <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -27,7 +23,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Tus mascotas</h3>
+                  <h3 class="box-title">Productos Inventario</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     
@@ -41,7 +37,7 @@
                     <!--Contenido-->
                     <div class="row">
                       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                        <h3>Tus mascotas <a href=".\mascotasClienteCrear.php"><button class="btn btn-success">Nuevo</button></a></h3>
+                        <h3>Listado de Productos</h3>
                         <div class="form-group">
                             
                          <form action="" method="post">
@@ -66,8 +62,9 @@
                             <thead>
                               <th>Id</th>
                               <th>Nombre</th>
-                              <th>Sexo</th>
-                              <th>Edad</th>
+                              <th>Valor</th>
+                              <th>Cantidad</th>
+                              <th>Detalles</th>
                             </thead>
                                
                     <?php
@@ -76,45 +73,41 @@
                                 if (isset($_POST["enviar"])) {
                                   
                                   $buscar = $_POST["textbox"];
-                                  $Result = "SELECT * FROM mascota WHERE nombreMascota LIKE '%$buscar%'";
-                                  //$Result= $conexion->query("SELECT * FROM mascota WHERE nombreMascota LIKE '%$buscar%'");
+                                  $Result = "CALL BuscarProductoStockAdmin ('%$buscar%')";
+                                  //$Result= $conexion->query("SELECT * FROM producto WHERE nombreProducto LIKE '%$buscar%'");
                                   $buscarResult= mysqli_query($conexion, $Result);
                                     while ($row = $buscarResult->fetch_array()) {
-                                        $idMascota = $row["idMascota"];
-                                        $nombreMascota = $row["nombreMascota"];
-                                        $sexoMascota = $row["sexoMascota"];
-                                        $edadMascota = $row["edadMascota"];
+                                        $idProducto = $row["idProducto"];
+                                        $nombreProducto = $row["nombreProducto"];
+                                        $valorProducto = $row["valorProducto"];
+                                        $stockProducto = $row["stockProducto"];
+                                        $descripcionProducto = $row["descripcionProducto"];
                                         ?>
                                         <tr>
-                                            <td><?php echo $idMascota ?>  </td>
-                                            <td><?php echo $nombreMascota ?></td>
-                                            <td><?php echo $sexoMascota ?></td>
-                                            <td><?php echo $edadMascota ?></td>
-                                            <td>
-                                                <a href="mascclientelistadoEditar.php?id=<?php echo $row ['idMascota'];?>"><button class="btn btn-info">Editar</button></a>
-                                                <a href="mascclientelistadoEliminar.php?id=<?php echo $row ['idMascota'];?>"><button class="btn btn-danger">Eliminar</button></a>
-                                            </td>
+                                            <td><?php echo $idProducto ?>  </td>
+                                            <td><?php echo $nombreProducto ?></td>
+                                            <td><?php echo $valorProducto ?></td>
+                                            <td><?php echo $stockProducto ?></td>
+                                            <td><?php echo $descripcionProducto ?></td>
                                         </tr> 
             <?php
                                 }}else{
-                                  $traer = "SELECT * FROM mascota";
+                                  $traer = "SELECT * FROM producto";
                                   $resultado = mysqli_query($conexion, $traer);
                                  if ($resultado) {
                                     while ($row = $resultado->fetch_array()) {
-                                      $idMascota = $row["idMascota"];
-                                      $nombreMascota = $row["nombreMascota"];
-                                      $sexoMascota = $row["sexoMascota"];
-                                      $edadMascota = $row["edadMascota"];
-                                      ?>
-                                      <tr>
-                                          <td><?php echo $idMascota ?>  </td>
-                                          <td><?php echo $nombreMascota ?></td>
-                                          <td><?php echo $sexoMascota ?></td>
-                                          <td><?php echo $edadMascota ?></td>
-                                            <td>
-                                                <a href="mascclientelistadoEditar.php?id=<?php echo $row ['idMascota'];?>"><button class="btn btn-info">Editar</button></a>
-                                                <a href="mascclientelistadoEliminar.php?id=<?php echo $row ['idMascota'];?>"><button class="btn btn-danger">Eliminar</button></a>
-                                            </td>
+                                        $idProducto = $row["idProducto"];
+                                        $nombreProducto = $row["nombreProducto"];
+                                        $valorProducto = $row["valorProducto"];
+                                        $stockProducto = $row["stockProducto"];
+                                        $descripcionProducto = $row["descripcionProducto"];
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $idProducto ?>  </td>
+                                            <td><?php echo $nombreProducto ?></td>
+                                            <td><?php echo $valorProducto ?></td>
+                                            <td><?php echo $stockProducto ?></td>
+                                            <td><?php echo $descripcionProducto ?></td>
                                         </tr> 
             <?php
                                 }}}
@@ -144,20 +137,9 @@
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 <!--Fin-Contenido-->
-<footer class="main-footer">
-  <div class="pull-right hidden-xs">
-    <b>Ficha: 2558705-1[4] Version</b> 1.1.0
-  </div>
-  <strong>Copyright &copy; 2022-2023 <a href="www.incanatoit.com">SENA-ADSO</a>.</strong> All rights reserved.
-</footer>
-
-
-<!-- jQuery 2.1.4 -->
-<script src="../Layout/js/jQuery-2.1.4.min.js"></script>
-<!-- Bootstrap 3.3.5 -->
-<script src="../Layout/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../Layout/js/app.min.js"></script>
+<?php
+    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\footer.php';//-> Fila inferior
+    ?>
 
 </body>
 </html>

@@ -20,7 +20,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="..\Productos\productosAdmListado.php"><i class="fa fa-circle-o"></i>Lista de productos</a></li>                
+                <li><a href="..\Productos\productosStaffListado.php"><i class="fa fa-circle-o"></i>Lista de productos</a></li>                
               </ul>
             </li>
 
@@ -31,7 +31,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="..\ventas\proAdmListado.php"><i class="fa fa-circle-o"></i> Productos</a></li>
+                <li><a href="..\ventas\proStaffListado.php"><i class="fa fa-circle-o"></i> Productos</a></li>
                 <li><a href="..\ventas\serAdmListado.php"><i class="fa fa-circle-o"></i> Servicios</a></li>
               </ul>
             </li>
@@ -44,13 +44,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="..\mascotas\mascotasAdmListado.php"><i class="fa fa-paw"></i>Mascotas</a></li>
-                <li><a href="..\adopcion\adopcionAdmListado.php"><i class="fa fa-paw"></i>Adopcion</a></li>
+                <li><a href="..\mascotas\mascotasAdmListado"><i class="fa fa-paw"></i>Mascotas</a></li>
+                <li><a href="..\adopcion\adopcionStaffListado.php"><i class="fa fa-paw"></i>Adopcion</a></li>
                 
               </ul>
             </li>
                        
-            <li class="treeview">
+            <!--<li class="treeview">
               <a href="..\InventarioClientes\ClientesAdmListado.php">
                 <i class="fa fa-users"></i>
                 <span>Clientes</span>
@@ -66,7 +66,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 <li><a href="#"><i class="fa fa-user"></i>Usuarios de administracion</a></li>
                 
               </ul>
-            </li>
+            </li>-->
             <li>
               <a href="#">
                 <i class="fa fa-plus-square"></i> <span>Ayuda</span>

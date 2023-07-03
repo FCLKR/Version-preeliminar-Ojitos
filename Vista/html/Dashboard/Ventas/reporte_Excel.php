@@ -9,11 +9,7 @@ require 'C:\xampp\htdocs\Ojitos\vendor\autoload.php';
 require 'Conexion.php';
 
 //Consulta a ojitos_db1
-$sql3="SELECT factura.idfactura,factura.fechaFactura, cliente.priapellidoCliente, cliente.prinombreCliente, producto.nombreProducto, producto.valorProducto,factura_has_producto.cantidad, factura_has_producto.valorIva, factura_has_producto.subTotal, factura.totalFactura,producto.stockProducto
-                                        FROM producto
-                                        INNER JOIN factura_has_producto ON producto.idProducto = factura_has_producto.producto_idProducto
-                                        INNER JOIN factura ON factura_has_producto.Factura_idfactura = factura.idfactura
-                                        INNER JOIN cliente ON factura.cliente_idCliente = cliente.idCliente";
+$sql3="CALL VentasProListaAdmExcel()";
 $consulta= mysqli_query($conexion, $sql3);
 
 //Especificar la fila donde queremos que comience el reporte
@@ -50,8 +46,8 @@ while($row=$consulta->fetch_assoc()){
     //Crear el objeto de excel con propiedades de celdas [Traer datos].
     $hojaActiva ->setCellValue('A'.$fila,$row['idfactura']);
     $hojaActiva ->setCellValue('B'.$fila,$row['fechaFactura']);
-    $hojaActiva ->setCellValue('C'.$fila,$row['prinombreCliente']);
-    $hojaActiva ->setCellValue('D'.$fila,$row['priapellidoCliente']);
+    $hojaActiva ->setCellValue('C'.$fila,$row['nombresUsuarios']);
+    $hojaActiva ->setCellValue('D'.$fila,$row['apellidosUsuarios']);
     $hojaActiva ->setCellValue('E'.$fila,$row['nombreProducto']);
     $hojaActiva ->setCellValue('F'.$fila,$row['valorProducto']);
     $hojaActiva ->setCellValue('G'.$fila,$row['cantidad']);

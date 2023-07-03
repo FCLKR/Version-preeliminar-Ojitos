@@ -27,7 +27,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i>Comprar Productos</a></li>
+                <li><a href="../ventas/proClienteListado.php"><i class="fa fa-circle-o"></i>Productos</a></li>
                 <li><a href="#"><i class="fa fa-circle-o"></i>Solicitar Servicios</a></li>
               </ul>
             </li>
@@ -40,8 +40,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHPWebPage.php to 
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-paw"></i>Mis mascotas registradas</a></li>
-                <li><a href="../Adopcion/Adopcion_Listado.html"><i class="fa fa-paw"></i>Mis mascotas adoptadas</a></li>
+                <li><a href="../Mascotas/mascotasClienteListado.php"><i class="fa fa-paw"></i>Mis mascotas registradas</a></li>
+                <li><a href="../Adopcion/adopcionClienteListado.php"><i class="fa fa-paw"></i>Adoptar</a></li>
               </ul>
             </li>
                        

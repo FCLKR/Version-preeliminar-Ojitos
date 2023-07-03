@@ -57,12 +57,12 @@ if ($documentoiniciar != "" && $contraseñainiciar = !"") {
                             print "<script>alert(\"Usuario inactivo contacta al Administrador\");window.location='http://localhost/Ojitos/vista/html/Homepage/Login/Login.html';</script>";
                                 }else{
                                     session_start();
-                                    $_SESSION["username"] = $documentoiniciar;
-                                    print "<script>alert(\"Haz iniciado sesion como TRABAJADOR\");window.location='http://localhost/Ojitos/vista/html/dashboard/Layout/inicioEmpleado.php';</script>";
+                                    $_SESSION["staff_id"] = $staff_id;
+                                    print "<script>alert(\"Haz iniciado sesion como TRABAJADOR\");window.location='http://localhost/Ojitos/vista/html/dashboard/Layout/inicioAdmin.php';</script>";
                     }}
             } else {
             session_start();
-            $_SESSION["username"] = $documentoiniciar;
+            $_SESSION["admin_id"] = $admin_id;
             print "<script>alert(\"Haz iniciado sesion como ADMINISTRADOR\");window.location='http://localhost/Ojitos/vista/html/dashboard/Layout/inicioAdmin.php';</script>";
         }
     } else {
@@ -76,9 +76,8 @@ if ($documentoiniciar != "" && $contraseñainiciar = !"") {
             print "<script>alert(\"Usuario inactivo contacta al Administrador\");window.location='http://localhost/Ojitos/vista/html/Homepage/Login/Login.html';</script>";
         } else {
             session_start();
-            $_SESSION["username"] = $documentoiniciar;
+            $_SESSION["$user_id"] = $user_id;
             print "<script>alert(\"Haz iniciado sesion como Cliente\");window.location='http://localhost/Ojitos/vista/html/dashboard/Layout/inicioCliente.php';</script>";
-           
         }
     }
 } else {

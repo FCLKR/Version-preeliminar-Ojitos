@@ -22,7 +22,36 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Bienvenido Jefferson, -debe ir el saludo segun el tiempo del dia-</h3>
+                  <h3 class="box-title">Bienvenido <?php    
+                                $documentoiniciar = $_SESSION["username"];
+                                $sql2 = " SELECT  nombresUsuarios, apellidosUsuarios, roles.nomRol
+                                    FROM usuarios
+                                    INNER JOIN roles ON usuarios.Roles_idRol = roles.idRol WHERE documentoUsuario= $documentoiniciar ";
+                                    $query2 = $conexion->query($sql2);
+                                    while ($row = $query2->fetch_array())  {
+                                    $nombreinicio = $row["nombresUsuarios"];
+                                    $apellidoinicio= $row["apellidosUsuarios"];
+                                    $nomRol=$row ["nomRol"];
+                        }
+                                echo $nombreinicio;  
+                                date_default_timezone_set("America/Bogota");
+                                $hora = date('G');
+                                //$hora2 = date('h:i:s A'); 
+                                //echo $hora;
+                                switch ($hora) {
+                                    case (($hora >= 6) AND ($hora < 12)): $mensaje = ",  ¡Buenos dias!";
+                                        echo $mensaje;
+                                        break;
+
+                                    case (($hora >= 12) AND ($hora < 18)): $mensaje = ",  ¡Buenas tardes!";
+                                        echo $mensaje;
+                                        break;
+
+                                    case (($hora >= 0) AND ($hora < 6)): $mensaje = ",  ¡Buena madrugada!";
+                                        echo $mensaje;
+                                        break;
+                                }
+                                ?></h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     

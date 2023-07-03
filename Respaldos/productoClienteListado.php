@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
 <html>
-<?php
-    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headall.php';//-> Fila superior
+ <?php
+    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headall.php'; //-> Fila superior
     ?>
 
 
@@ -10,9 +10,9 @@
         <div class="wrapper">
 
  <?php
-    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headerall.php';//-> Cuadro de presentacion y cerrar sesion
-    include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\slidermenuAdmin.php';//-> Menu lateral.
-    ?>
+            include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headerall.php'; //-> Cuadro de presentacion y cerrar sesion
+            include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\slidermenuCliente.php'; //-> Menu para cliente
+            ?>
             <!--Contenido-->
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -62,17 +62,11 @@
 
                                                         <table class="table table-striped table-bordered table-condensed table-hover">
                                                             <thead>
-                                                            <th>Id</th>
-                                                            <th>Nombre 1</th>
-                                                            <th>Nombre 2</th>
-                                                            <th>Apellido 1</th>
-                                                            <th>Apellido 2</th>
-                                                            <th>Documento</th>
-                                                            <th>edad</th>
-                                                            <th>e-mail</th>
-                                                            <th>Residencia</th>
-                                                            <th>Contacto</th>
-                                                            <th>Cambiar estado</th>
+                                                            <th>Producto</th>
+                                                                <th>Descripcion</th>
+                                                                <th>Valor</th>
+                                                                <th>Cantidad</th>
+                                                                <th>¿Lo quieres?</th>
                                                             </thead>
 
                                                             <?php
@@ -117,35 +111,25 @@
                                                                         <?php
                                                                     }
                                                                 } else {
-                                                                    $traer = "SELECT * FROM cliente";
-                                                                    $resultado = mysqli_query($conexion, $traer);
-                                                                    if ($resultado) {
-                                                                                    while ($row = $resultado->fetch_array()) {
-                                                                                        $idCliente = $row["idCliente"];
-                                                                                        $nombreCliente = $row["nombresUsuarios"];
-                                                                                        $segundoNombre = $row["segnombreCliente"];
-                                                                                        $primerApellido = $row["apellidosUsuarios"];
-                                                                                        $segundoApellido = $row["segapellidoCliente"];
-                                                                                        $documentoCliente = $row["documentoCliente"];
-                                                                                        $edadCliente = $row["edadCliente"];
-                                                                                        $email = $row["mailCliente"];
-                                                                                        $direccionCliente = $row["addressCliente"];
-                                                                                        $celularCliente = $row["numeroCelular"];
-                                                                                        $estadoCliente = $row["estado"];
-                                                                                        ?>
-                                                                        <tr>
-                                                                                            <td name="idClientes"><?php echo $idCliente ?>  </td>
-                                                                                            <td><?php echo $nombreCliente ?></td>
-                                                                                            <td><?php echo $segundoNombre ?></td>
-                                                                                            <td><?php echo $primerApellido ?></td>
-                                                                                            <td><?php echo $segundoApellido ?></td>
-                                                                                            <td><?php echo $documentoCliente ?>  </td>
-                                                                                            <td><?php echo $edadCliente ?></td>
-                                                                                            <td><?php echo $email ?></td>
-                                                                                            <td><?php echo $direccionCliente ?></td>
-                                                                                            <td><?php echo $celularCliente ?></td>
+                                                                            
+                                                                            
+                                                                            $traer = "CALL ListaProductoCliente()";
+                                                                            $resultado = mysqli_query($conexion, $traer);
+                                                                            if ($resultado) {
+                                                                            while ($row = $resultado->fetch_array()) {
+                                                                            $idPro = $row["idProducto"];
+                                                                            $nomPro = $row["nombreProducto"];
+                                                                            $valPro = $row["valorProducto"];
+                                                                            $desPro = $row["descripcionProducto"];
+
+                                                                            ?>
+                                                                                <tr>
+                                                                                    <td><?php echo $nomPro ?>  </td>
+                                                                                    <td><?php echo $desPro ?></td>
+                                                                                    <td><?php echo $valPro ?></td>
+                                                                                    <td><?php// echo $cantPro ?></td>
                                                                                             <td>
-                                                                                                <a href="updateEstadocliente.php?id=<?php echo $row ['idCliente']; ?>"><button   class="btn btn-info"><?php echo $estadoCliente ?></button></a></td>
+                                                                                                <a href="crearFactura.php?id=<?php echo $row ['idProducto']; ?>"><button   class="btn btn-info">¡Lo quiero!</button></a></td>
                                                                                             <td> 
                                                                                             </td>
                                                                                         </tr> 
