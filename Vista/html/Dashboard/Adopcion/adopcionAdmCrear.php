@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group">
                           <a href="#">
-                          <button class="btn btn-primary" type="submit" onclick= "return Confirmacion()">Guardar</button></a>
+                          <button class="btn btn-primary" type="submit" onclick= "return Confirmacioneditar()">Guardar</button></a>
                           
                         </div>
                       </div>
