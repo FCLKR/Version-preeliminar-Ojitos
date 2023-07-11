@@ -3,6 +3,14 @@
 <?php
     include 'C:\xampp\htdocs\Ojitos\Vista\html\HeaderSlider\headall.php';//-> Fila superior
     ?>
+ function Confirmacioneditar(){
+       var respuesta = confirm("----Confirma eliminación----");
+       if(respuesta==true){
+           return true;
+       }else{
+           return false;
+       }
+}
    <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
@@ -116,7 +124,7 @@
                                             <td><?php echo $observacionesAn ?></td>
                                             <td>
                                                 <a href="adopadmlistadoEditar.php?id=<?php echo $row ['idAnimaldisponible'];?>"><button class="btn btn-info">Editar</button></a>
-                                                <a href="adopadmlistadoEliminar.php?id=<?php echo $row ['idAnimaldisponible'];?>"><button class="btn btn-danger">Eliminar</button></a>
+                                                <a href="adopadmlistadoEliminar.php?id=<?php echo $row ['idAnimaldisponible'];?>"><button class="btn btn-danger" onclick= "return Confirmacioneditar()">Eliminar</button></a>
                                             </td>
                                         </tr> 
             <?php
